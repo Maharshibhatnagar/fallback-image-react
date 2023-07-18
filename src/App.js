@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import List from './components/List';
+import './styles.css';
 
-function App() {
+const App = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={isDarkMode ? 'dark-mode' : ''}>
+      <List
+        items={[
+          {
+            id: '1', // Using strings as IDs for Unsplash API
+            description: 'Description for Image 1',
+          },
+          {
+            id: '2',
+            description: 'Description for Image 2',
+          },
+          // Add more items as needed
+        ]}
+      />
+      <button className="toggle-button" onClick={toggleDarkMode}>
+        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+      </button>
+      <div className="created-by">Created by Maharshi</div>
     </div>
   );
-}
+};
 
 export default App;
